@@ -10,8 +10,8 @@ function login (e) {
         username: username.value,
         password: password.value,
     }
-    console.log(url)
-    console.log(user)
+    // console.log(url)
+    // console.log(user)
     axios.post(url, user).then((res) => {
         if (res.data.success) {
             const { token, expired } = res.data;

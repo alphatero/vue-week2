@@ -16,6 +16,7 @@ const app = {
   },
   render () {
     const productList = document.querySelector('#productList');
+    const productCount = document.querySelector('#productCount');
     // let temp = '';
     // this.data.products.forEach ((item) => {
     //   temp = temp + `
@@ -54,6 +55,8 @@ const app = {
         </tr>
     `).join('');
     // console.log(temp);
+    const count = this.data.products.length;
+    productCount.textContent = count;
     productList.innerHTML = temp;
     const deleteBtns = document.querySelectorAll('.deleteBtn');
     deleteBtns.forEach(btn => {
@@ -65,10 +68,12 @@ const app = {
     console.log(id);
     axios.delete(`${url}/${path}/admin/product/${id}`).then(
       res => {
-        console.log(res);
+        // console.log(res);
         app.getData();
       }
-    )
+    ).catch((error) => {
+      console.log(error);
+  })
   },
   init() {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
